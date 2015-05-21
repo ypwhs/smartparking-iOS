@@ -47,14 +47,14 @@ class ViewController: UIViewController {
         }
     }
     
-    func read()->[UInt8]{
+    func read()->String{
         if let re = client.read(1024*10){
-            return re
-            //var restr = NSString(bytes: re, length: re.count, encoding: NSUTF8StringEncoding)
+            //return re
+            return NSString(bytes: re, length: re.count, encoding: NSUTF8StringEncoding) as! String
         }else{
             println("获取数据失败")
-            return []
         }
+        return ""
     }
     
     func xiancheng(code:dispatch_block_t){
@@ -64,12 +64,16 @@ class ViewController: UIViewController {
         dispatch_async(dispatch_get_main_queue(), code)
     }
     
-    var readdata:[UInt8] = []
-    func solve(){
-        var num = getNum(&readdata)
-        var cm = getCm(&readdata)
-        println("num:\(num),cm:\(cm)")
+    func zhongjian(str:String,str1:String,str2:String)->String {
+        var left = str.rangeOfString(str1)
+        var right = str.rangeOfString(str2)
+        var r = Range(start: (left?.endIndex)! , end: (right?.startIndex)!)
+        var s = str.substringWithRange(r)
+        return s
     }
+
+    
+
     @IBAction func conn(sender: AnyObject) {
         client = TCPClient(addr: IP.text, port: 8080)
         if connect(){
@@ -78,9 +82,11 @@ class ViewController: UIViewController {
             
             xiancheng({
                 while true{
-                    self.readdata = self.read()
+                    var str = self.read()
                     //[1]1.23cm
-                    self.solve()
+                    var num = self.zhongjian(str, str1: "[", str2: "]").toInt()
+                    var cm = (self.zhongjian(str, str1: "]", str2: "cm") as NSString).floatValue
+                    println("num:\(num),cm:\(cm)")
                 }
             })
             
