@@ -73,7 +73,12 @@ class ViewController: UIViewController {
     }
 
     
+    @IBOutlet weak var oneText: UILabel!
+    @IBOutlet weak var twoText: UILabel!
 
+    @IBOutlet weak var sugText: UILabel!
+    var carCM = [8.1, 8.2, 8.3]
+    
     @IBAction func conn(sender: AnyObject) {
         client = TCPClient(addr: IP.text, port: 8080)
         if connect(){
@@ -84,9 +89,37 @@ class ViewController: UIViewController {
                 while true{
                     var str = self.read()
                     //[1]1.23cm
-                    var num = self.zhongjian(str, str1: "[", str2: "]").toInt()
-                    var cm = (self.zhongjian(str, str1: "]", str2: "cm") as NSString).floatValue
-                    println("num:\(num),cm:\(cm)")
+                    println(str)
+                    
+                    var num = self.zhongjian(str, str1: "[", str2: "]").toInt()!
+                    var cm = (self.zhongjian(str, str1: "]", str2: "cm") as NSString).doubleValue
+                    self.carCM[num] = cm
+                    var text = "\(num)号车位\n"
+                    var text2 = "建议停车位：\n1号车位"
+                    if cm < 7{
+                        text += "有车\n"
+                    }else {
+                        text += "无车\n"
+                    }
+                    text += "\(cm)cm"
+
+                    println(text)
+                    if self.carCM[1] < 7{
+                        text2 = "建议停车位：\n2号车位"
+                        if self.carCM[2] < 7{
+                            text2 = "建议停车位：\n无"
+                        }
+                    }
+                    
+                    self.ui({
+                        if num == 1{
+                            self.oneText.text = text
+                        }else if num == 2{
+                            self.twoText.text = text
+                        }
+                        self.sugText.text = text2
+                    })
+                    
                 }
             })
             
