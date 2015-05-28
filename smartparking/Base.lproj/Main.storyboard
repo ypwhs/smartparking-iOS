@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D2134" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="EuC-FE-hkT">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D2134" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="EuC-FE-hkT">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
@@ -93,9 +93,11 @@
                     <connections>
                         <outlet property="IP" destination="Out-YF-GU6" id="WWD-GN-EpG"/>
                         <outlet property="connButton" destination="CNT-zf-8rh" id="E1D-AZ-jJ0"/>
+                        <outlet property="fourText" destination="MQq-RA-fsi" id="axF-l2-XYP"/>
                         <outlet property="oneText" destination="l0z-iU-Qmg" id="Ucs-nI-qKJ"/>
                         <outlet property="state" destination="jEv-WQ-WX4" id="EzO-bE-AaN"/>
                         <outlet property="sugText" destination="tlB-lx-rWL" id="5Gc-8c-Hac"/>
+                        <outlet property="threeText" destination="ZJA-le-ZNV" id="gHx-vu-hfB"/>
                         <outlet property="twoText" destination="oRV-Hr-WVO" id="9cm-8T-lO2"/>
                     </connections>
                 </viewController>

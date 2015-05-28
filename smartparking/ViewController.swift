@@ -13,6 +13,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        texts = [UILabel(), oneText, twoText, threeText, fourText]
     }
 
     override func didReceiveMemoryWarning() {
@@ -75,9 +76,13 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var oneText: UILabel!
     @IBOutlet weak var twoText: UILabel!
-
+    @IBOutlet weak var threeText: UILabel!
+    @IBOutlet weak var fourText: UILabel!
+    
+    var texts:[UILabel] = []
+    
     @IBOutlet weak var sugText: UILabel!
-    var carCM = [8.1, 8.2, 8.3]
+    var carCM = [10.1, 10, 10, 10, 10]
     
     @IBAction func conn(sender: AnyObject) {
         client = TCPClient(addr: IP.text, port: 8080)
@@ -112,11 +117,7 @@ class ViewController: UIViewController {
                     }
                     
                     self.ui({
-                        if num == 1{
-                            self.oneText.text = text
-                        }else if num == 2{
-                            self.twoText.text = text
-                        }
+                        self.texts[num].text = text
                         self.sugText.text = text2
                     })
                     
